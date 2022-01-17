@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>game</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <div class="container">
+      <section>
+        <!-- первая страница -->
+        <button class="bstart " type="button">СТАРТ</button> 
+      </section>
+      <section>
+        <!-- вторая страница -->
+        <div class="forma d-none">
+          <ul>
+            <li>
+            <label for="uname">Как тебя зовут?</label>
+          </li>
+          <li>
+            <input type="text" class="user-name">
+          </li>
+          <li> 
+            <button class="binput" type="button">Отправить</button>
+          </li>
+          </ul>
+        </div>
+      </section>
+      <section>
+        <!-- третья 1 задание -->
+        <div class="conteiner d-none">
+          <div class="number1">
+            <h1>Уровень 1</h1>
+          </div>
+          <div class="perehod d-none">
+            <h2>ЗАДАНИЕ ВЫПОЛНЕНО</h2>
+            <div class="buttn-nav">
+              <button class="brestart" type="button">Пройти еще раз</button>
+              <button class="bgo" type="button">следующий уровень</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer></footer>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
