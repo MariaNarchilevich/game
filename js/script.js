@@ -185,8 +185,31 @@ function addImg (val){
   const tdiv = document.createElement('div');
   tdiv.classList.add ('flex-wrap');
   let count=0;
+  let elemmass = [];
   for (let i=1; i<=9; i++) {
     let rand2 = Math.floor(Math.random() * mass.length);
+    let huy = mass[rand2].name;
+    elemmass.push(huy);
+    console.log(elemmass)
+
+    let getelem = true;
+    let k = 0;
+    for(let j=0; j<elemmass.length; j++) {
+      if (elemmass[j] === huy){
+        k++;
+        if(k>1){
+        getelem = false;
+        break;}
+      }
+    };
+
+    if(getelem ===false){
+      console.log(i +" "+ 'contin');
+      elemmass.pop();
+      i--;
+      continue;
+    }
+    else {
     let mastype= mass[rand2].type;
     if (mastype===val) count++;
 
@@ -195,6 +218,7 @@ function addImg (val){
     tdiv2.setAttribute('data-text', mastype);
     tdiv2.innerHTML = `<img src="${mass[rand2].img}">`;
     tdiv.append(tdiv2);
+    };
   }
   if (count<3) return addImg(val);
   numb1.append(tdiv);
