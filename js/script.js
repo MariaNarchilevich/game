@@ -1,87 +1,112 @@
-let bstart = document.querySelector(".bstart"); //кнопка старта
-let binput = document.querySelector(".binput"); //кнопка отправки формы
+let button_start = document.querySelector(".bstart"); //кнопка старта
+let binput_form = document.querySelector(".binput"); //кнопка отправки формы
 let brestart = document.querySelector(".brestart"); //кнопка занова уровень 1
-let bgo = document.querySelector(".bgo"); //переход на уровень 2
+let bgo = document.querySelector(".bgo"); //кнопка переход на уровень 2
+let brestart2 = document.querySelector(".brestart2");
+let bgo2 = document.querySelector(".bgo2");
+let brestart3 = document.querySelector(".brestart3");
+
 let form = document.querySelector(".forma"); //форма
-let kont = document.querySelector(".conteiner");
+let kont = document.querySelector(".conteiner"); //фон заданий
 let numb1 = document.querySelector(".number1"); //1 задание
 let numb2 = document.querySelector(".number2"); //2задание
+let numb3 = document.querySelector(".number3"); //2задание
+
 let uname = document.querySelector(".user-name"); //имя пользователя
+
 let perehod = document.querySelector(".perehod"); //переход
 let perehod2 = document.querySelector(".perehod2"); //переход
-let usname = "";
-let flcol = document.querySelector(".flex-column"); //2задание
-let res = document.querySelector(".res"); //2 задание
+let perehod3 = document.querySelector(".perehod3"); //переход
+let num2_task = document.querySelector(".flex-column"); //2задание
+let num2_res = document.querySelector(".res"); //2 задание
+let num3_task = document.querySelector(".flex-column3"); //3задание
+let num3_res = document.querySelector(".res3"); //3 задание
 
 // старт
-bstart.addEventListener("click", function () {
-  bstart.classList.add("d-none");
-  login();
+button_start.addEventListener("click", function () {
+  button_start.classList.add("d-none");
+  form.classList.remove("d-none");
+  //login();
 });
 
 // заполнение формы
-binput.addEventListener("click", function () {
+binput_form.addEventListener("click", function () {
   if (uname.value === null || uname.value === "") {
     alert("Введи свое имя");
     return;
   }
-  usname = uname.value;
-  document.cookie = `username=${usname}`;
-  console.log(getCookie("username"));
   form.classList.add("d-none");
   kont.classList.remove("d-none");
-  //появляются рандомные картинки
+  //появляется первый уровень
   show_pictures1();
 });
 
-// типо возврат на предыдущий уровень
+// типо возврат на предыдущий уровень 1
 brestart.addEventListener("click", function () {
   perehod.classList.add("d-none");
   numb1.classList.remove("d-none");
   show_pictures1();
 });
+// возврат на 2 уровень
+brestart2.addEventListener("click", function () {
+  perehod2.classList.add("d-none");
+  numb2.classList.remove("d-none");
+  show_pictures2();
+});
+// возврат на 3 уровень
+brestart3.addEventListener("click", function () {
+  perehod3.classList.add("d-none");
+  numb3.classList.remove("d-none");
+  show_pictures3();
+});
 
+//переход на уровень 2
 bgo.addEventListener("click", function () {
-  console.log(numb2);
   perehod.classList.add("d-none");
   numb2.classList.remove("d-none");
   show_pictures2();
 });
 
-function login() {
-  const u_l = getCookie("username");
-  console.log(u_l);
-  if (u_l === "" || u_l === undefined) {
-    form.classList.remove("d-none");
-  } else {
-    usname = u_l;
-    kont.classList.remove("d-none");
-    show_pictures1();
-  }
-}
+// переход на 3 уровень
+bgo2.addEventListener("click", function () {
+  perehod2.classList.add("d-none");
+  numb3.classList.remove("d-none");
+  show_pictures3();
+});
 
+//работа 1 уровня
 function show_pictures1() {
   let rand = Math.floor(Math.random() * questions1.length);
-  const teg_div = document.createElement("div");
-  numb1.innerHTML = `<h1>Уровень 1</h1>`;
-  teg_div.innerHTML = `<h2>${uname.value}, ${questions1[rand].que}</h2>`;
-  numb1.append(teg_div);
+
+  numb1.innerHTML = `<h1>Уровень 1</h1>
+                     <h2>${uname.value}, ${questions1[rand].que}</h2>`;
+
+  //появляются картинки
   let count = addImg(questions1[rand].key, numb1);
 
   // обработка клика по картинкам
   let dict_elem = document.querySelectorAll(".elem");
-  let newcount = count;
+  let newcount = 0;
+
+  const statistic = document.createElement("div");
+  statistic.classList.add("statistic");
+  statistic.innerHTML = `<p>${newcount} / ${count}</p>`;
+  numb1.append(statistic);
+
   for (let i = 0; dict_elem.length > i; i++) {
     dict_elem[i].addEventListener("click", function () {
       if (this.getAttribute("data-text") === questions1[rand].key) {
         if (!this.classList.contains("true")) {
-          newcount--;
+          newcount++;
           this.classList.add("true");
         }
       } else {
         this.classList.add("false");
       }
-      if (newcount === 0) {
+
+      statistic.innerHTML = `<p>${newcount} / ${count}</p>`;
+
+      if (newcount === count) {
         numb1.classList.add("d-none");
         numb1.innerHTML = "";
         perehod.classList.remove("d-none");
@@ -92,16 +117,15 @@ function show_pictures1() {
 
 function show_pictures2() {
   let rand = Math.floor(Math.random() * questions1.length);
-  const teg_div = document.createElement("div");
-  flcol.innerHTML = `<h1>Уровень 2</h1>`;
-  teg_div.innerHTML = `<h2>${uname.value}, ${questions1[rand].que}</h2>`;
-  flcol.append(teg_div);
-  let count = addImg(questions1[rand].key, flcol);
+  num2_task.innerHTML = `<h1>Уровень 2</h1>
+                     <h2>${uname.value}, ${questions1[rand].que}</h2>`;
+
+  let count = addImg(questions1[rand].key, num2_task);
 
   //обработка перетаскивания
   let dict_elem = document.querySelectorAll(".elem");
   let flel = document.querySelector(".flex-wrap");
-  let newcount = count;
+
   // Перебираем все элементы списка и присваиваем нужное значение
   for (const task of dict_elem) {
     task.draggable = true;
@@ -111,16 +135,16 @@ function show_pictures2() {
     evt.target.classList.add(`selected`);
   });
 
-  res.addEventListener(`dragend`, (evt) => {
+  num2_res.addEventListener(`dragend`, (evt) => {
     evt.target.classList.remove(`selected`);
   });
 
-  res.ondragover = allowDrop;
+  num2_res.ondragover = allowDrop;
   function allowDrop(event) {
     event.preventDefault();
   }
 
-  res.ondrop = drop;
+  num2_res.ondrop = drop;
   function drop(event) {
     event.target.append(document.querySelector(".selected"));
   }
@@ -128,7 +152,6 @@ function show_pictures2() {
   let bresultat = document.querySelector(".resultat");
   bresultat.addEventListener("click", function () {
     let itemRes = document.querySelectorAll(".res > .elem");
-    console.log(itemRes);
     let newcounter = 0;
     for (let i = 0; i < itemRes.length; i++) {
       if (itemRes[i].getAttribute("data-text") === questions1[rand].key) {
@@ -136,8 +159,44 @@ function show_pictures2() {
       }
       if (newcounter === count) {
         numb2.classList.add("d-none");
-        numb2.innerHTML = "";
+        num2_task.innerHTML = "";
+        num2_res.innerHTML = "";
         perehod2.classList.remove("d-none");
+      }
+    }
+  });
+}
+
+function show_pictures3() {
+  let rand = Math.floor(Math.random() * questions1.length);
+  num3_task.innerHTML = `<h1>Уровень 2</h1>
+                     <h2>${uname.value}, ${questions1[rand].que}</h2>`;
+
+  let count = addImg(questions1[rand].key, num3_task);
+
+  //обработка перетаскивания
+  let dict_elem = document.querySelectorAll(".elem");
+
+  for (let i = 0; dict_elem.length > i; i++) {
+    dict_elem[i].addEventListener("dblclick", function () {
+      const append_el = this.cloneNode(true);
+      num3_res.append(append_el);
+    });
+  }
+
+  let bresultat = document.querySelector(".resultat3");
+  bresultat.addEventListener("click", function () {
+    let itemRes = document.querySelectorAll(".res3 > .elem");
+    let newcounter = 0;
+    for (let i = 0; i < itemRes.length; i++) {
+      if (itemRes[i].getAttribute("data-text") === questions1[rand].key) {
+        newcounter++;
+      }
+      if (newcounter === count) {
+        numb3.classList.add("d-none");
+        num3_task.innerHTML = "";
+        num3_res.innerHTML = "";
+        perehod3.classList.remove("d-none");
       }
     }
   });
@@ -177,24 +236,12 @@ function addImg(val, tegd) {
       tdiv2.classList.add("elem");
       tdiv2.setAttribute("data-text", mastype);
       tdiv2.style.backgroundImage = `url('${mass[rand2].img}')`;
-      //tdiv2.innerHTML = `<img src="${mass[rand2].img}">`;
       tdiv.append(tdiv2);
     }
   }
   if (count < 3) return addImg(val, tegd);
   tegd.append(tdiv);
   return count;
-}
-
-function getCookie(name) {
-  let matches = document.cookie.match(
-    new RegExp(
-      "(?:^|; )" +
-        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-        "=([^;]*)"
-    )
-  );
-  return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
 let mass = [
