@@ -76,13 +76,11 @@ input {
   max-width: 450px;
 }
 
-img {
-  max-width: 130px;
-  max-height: 130px;
-}
-
 .elem {
   margin: 5px;
+  width: 130px;
+  height: 130px;
+  background-size: 130px 130px;
 }
 
 .elem:hover {
@@ -104,4 +102,31 @@ img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.flexbox-pos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-column {
+  width: 50%;
+}
+
+.res {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  background-color: brown;
+  height: 600px;
+  width: 50%;
+}
+
+.resultat {
+  position: absolute;
+  top: 90%;
+  height: 20px;
 }
