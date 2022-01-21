@@ -73,13 +73,13 @@ input{
   max-width: 450px;
 }
 
-img{
-  max-width: 130px;
-  max-height: 130px;
-}
+
 
 .elem {
   margin: 5px;
+  width: 130px;
+  height: 130px;
+  background-size: 130px 130px;
 }
 
 .elem:hover{
@@ -102,3 +102,25 @@ img{
 // }
 // .go {
 // }
+
+.flexbox-pos {
+  display: flex;
+}
+
+.flex-column {
+  width: 50%;
+}
+
+.res {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: brown;
+  height: 600px;
+  width: 50%;
+}
+
+.resultat{
+  position: absolute;
+  top: 90%;
+  height: 20px;
+}
