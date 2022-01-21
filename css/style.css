@@ -7,6 +7,25 @@ main {
   height: 100%;
 }
 
+ul {
+  list-style: none;
+  padding: 0 30px;
+  margin: 0;
+}
+
+li {
+  padding: 10px;
+}
+
+label {
+  margin-left: 33px;
+}
+
+input {
+  height: 30px;
+  width: 160px;
+}
+
 .bstart {
   width: 200px;
   height: 50px;
@@ -37,25 +56,6 @@ main {
   border-radius: 1em;
 }
 
-ul {
-  list-style: none;
-  padding: 0 30px;
-  margin: 0;
-}
-
-li {
-  padding: 10px;
-}
-
-label {
-  margin-left: 33px;
-}
-
-input {
-  height: 30px;
-  width: 160px;
-}
-
 .binput {
   margin-left: 45px;
 }
@@ -64,7 +64,8 @@ input {
   max-width: 1000px;
   height: 600px;
   margin: 100px auto;
-  background-color: yellowgreen;
+  background-color: #d8c893;
+  padding: 10px;
 }
 
 .flex-wrap {
@@ -95,7 +96,7 @@ input {
   border: 5px solid red;
 }
 
-.buttn-nav {
+.buttn-nav, .buttn-nav2, .buttn-nav3 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -104,17 +105,17 @@ input {
           justify-content: space-between;
 }
 
-.flexbox-pos {
+.flexbox-pos, .flexbox-pos3 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.flex-column {
+.flex-column, .flex-column3 {
   width: 50%;
 }
 
-.res {
+.res, .res3 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -125,8 +126,20 @@ input {
   width: 50%;
 }
 
-.resultat {
+.resultat, .resultat3 {
   position: absolute;
   top: 90%;
+  left: 50%;
   height: 20px;
+}
+
+.statistic {
+  position: absolute;
+  left: 60%;
+  top: 30%;
+}
+
+.statistic > p {
+  font-size: 50px;
+  color: #31036d;
 }
