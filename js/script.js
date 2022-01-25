@@ -152,8 +152,7 @@ function show_pictures2() {
 
   let rand = Math.floor(Math.random() * questions1.length);
   num2_task.innerHTML = `<h1>Уровень 2</h1>
-                     <h2>${uname.value}, ${questions1[rand].que}</h2>
-                     <p>(перетащи их в красную зону)</p>`;
+                     <h2>${uname.value}, ${questions1[rand].que}</h2> <p>(перетащи их в красную зону)</p>`;
 
   let count = addImg(questions1[rand].key, num2_task);
 
@@ -219,8 +218,7 @@ function show_pictures3() {
 
   let rand = Math.floor(Math.random() * questions1.length);
   num3_task.innerHTML = `<h1>Уровень 3</h1>
-                     <h2>${uname.value}, ${questions1[rand].que}</h2>
-                     <p>два раза нажми на картинку</p>`;
+                     <h2>${uname.value}, ${questions1[rand].que}</h2> <p>два раза нажми на картинку</p>`;
 
   let count = addImg(questions1[rand].key, num3_task);
 
