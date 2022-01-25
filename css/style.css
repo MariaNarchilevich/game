@@ -26,6 +26,10 @@ input {
   width: 160px;
 }
 
+.d-none {
+  display: none;
+}
+
 .bstart {
   width: 200px;
   height: 50px;
@@ -38,8 +42,24 @@ input {
   font-weight: bold;
 }
 
-.d-none {
-  display: none;
+.binput {
+  margin-left: 45px;
+}
+
+.buttn-nav, .buttn-nav2, .buttn-nav3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.bresultat, .bresultat3 {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  height: 20px;
 }
 
 .forma {
@@ -56,19 +76,38 @@ input {
   border-radius: 1em;
 }
 
-.binput {
-  margin-left: 45px;
+.user-score {
+  max-width: 1000px;
+  height: 50px;
+  margin: 50px auto 0px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .conteiner {
   max-width: 1000px;
   height: 600px;
-  margin: 100px auto;
+  margin: 0px auto;
   background-color: #d8c893;
   padding: 10px;
 }
 
-.flex-wrap {
+.statistic {
+  position: absolute;
+  left: 60%;
+  top: 30%;
+}
+
+.statistic > p {
+  font-size: 50px;
+  color: #31036d;
+}
+
+.flex-image {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -77,14 +116,14 @@ input {
   max-width: 450px;
 }
 
-.elem {
+.elem-image {
   margin: 5px;
   width: 130px;
   height: 130px;
   background-size: 130px 130px;
 }
 
-.elem:hover {
+.elem-image:hover {
   border: 3px solid blue;
 }
 
@@ -94,15 +133,6 @@ input {
 
 .false {
   border: 5px solid red;
-}
-
-.buttn-nav, .buttn-nav2, .buttn-nav3 {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
 }
 
 .flexbox-pos, .flexbox-pos3 {
@@ -124,22 +154,4 @@ input {
   background-color: brown;
   height: 600px;
   width: 50%;
-}
-
-.resultat, .resultat3 {
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  height: 20px;
-}
-
-.statistic {
-  position: absolute;
-  left: 60%;
-  top: 30%;
-}
-
-.statistic > p {
-  font-size: 50px;
-  color: #31036d;
 }
