@@ -304,6 +304,7 @@ function restart (num, us, func) {
 function goo(num,func) {
   perehod.classList.add("d-none");
   num.classList.remove("d-none");
+  brest_ur.classList.remove("d-none");
   func();
 }
 
