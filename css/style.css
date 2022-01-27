@@ -46,7 +46,7 @@ input {
   margin-left: 45px;
 }
 
-.buttn-nav, .buttn-nav2, .buttn-nav3 {
+.buttn-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -79,7 +79,7 @@ input {
 .user-score {
   max-width: 1000px;
   height: 50px;
-  margin: 50px auto 0px auto;
+  margin: 20px auto 0px auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
