@@ -19,9 +19,8 @@ let num3_task = document.querySelector(".flex-column3"); //3задание
 let num3_res = document.querySelector(".res3"); //3 задание
 
 let user_cscore = 0;
-let user_cscore1 = 0;
-let user_cscore2 = 0;
-let user_cscore3 = 0;
+let user_cscore_ur = 0;
+let score_shtraf = 0;
 
 let section_ball = document.querySelector(".user-score");
 
@@ -57,17 +56,17 @@ binput_form.addEventListener("click", function () {
 
 // занова уровень
 brest_ur.addEventListener('click', function(){
-  if (document.querySelector(".number1.d-none")===null) {user_cscore1 = 0; show_pictures1();}
-  if (document.querySelector(".number2.d-none")===null) {user_cscore2 = 0; show_pictures2();}
-  if (document.querySelector(".number3.d-none")===null) {user_cscore3 = 0; show_pictures3();}
+  if (document.querySelector(".number1.d-none")===null) {show_pictures1();}
+  if (document.querySelector(".number2.d-none")===null) { show_pictures2();}
+  if (document.querySelector(".number3.d-none")===null) { show_pictures3();}
 })
 
 
 // типо возврат на предыдущий уровень 
 brestart.addEventListener("click", function () {
-  if (k===1) {restart(numb1,user_cscore1, show_pictures1)}
-  if (k===2) {restart(numb2,user_cscore2, show_pictures2)}
-  else {restart(numb3,user_cscore3, show_pictures3)}
+  if (k===1) { restart(numb1,user_cscore_ur, show_pictures1); }
+  if (k===2) { restart(numb2,user_cscore_ur, show_pictures2); }
+  if (k===3) { restart(numb3,user_cscore_ur, show_pictures3); }
 });
 
 //переход на след уровень
@@ -78,10 +77,11 @@ bgo.addEventListener("click", function () {
 
 //работа 1 уровня
 function show_pictures1() {
-  console.log(document.querySelector(".number1.d-none"));
+  user_cscore_ur = 40;
+  score_shtraf = 0;
   ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
 
-  ball.innerHTML = `<p>баллы за уровень: ${user_cscore1}</p>`;
+  ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
 
   let rand = Math.floor(Math.random() * questions1.length);
 
@@ -106,15 +106,14 @@ function show_pictures1() {
         if (!this.classList.contains("true")) {
           newcount++;
           this.classList.add("true");
-          user_cscore1 +=10;
         }
       } else {
         this.classList.add("false");
-        user_cscore1 -=5;
+        score_shtraf +=5;
       }
 
       statistic.innerHTML = ` <p>${newcount} / ${count}</p>`;
-      ball.innerHTML = `<p>баллы за уровень: ${user_cscore1}</p>`;
+      ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
 
       if (newcount === count) {
         numb1.classList.add("d-none");
@@ -122,7 +121,9 @@ function show_pictures1() {
         brest_ur.classList.add("d-none");
         perehod.classList.remove("d-none");
         k=1;
-        user_cscore =user_cscore + user_cscore1;
+        user_cscore_ur -= score_shtraf;
+        user_cscore +=user_cscore_ur;
+        ball.innerHTML = `<p>баллы за уровень: ${user_cscore_ur}</p>`;
         ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
       }
     });
@@ -131,9 +132,13 @@ function show_pictures1() {
 }
 
 function show_pictures2() {
+  user_cscore_ur = 40;
+  score_shtraf = 0;
+  num2_task.innerHTML = "";
+  num2_res.innerHTML = "";
   ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
 
-  ball.innerHTML = `<p>баллы за уровень: ${user_cscore2}</p>`;
+  ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
 
   let rand = Math.floor(Math.random() * questions1.length);
   num2_task.innerHTML = `<h1>Уровень 2</h1>
@@ -153,17 +158,27 @@ function show_pictures2() {
   flel.addEventListener(`dragstart`, (evt) => {
     evt.target.classList.add(`selected`);
   });
+  num2_res.addEventListener(`dragstart`, (evt) => {
+    evt.target.classList.add(`selected`);
+  });
 
+
+  flel.addEventListener(`dragend`, (evt) => {
+    evt.target.classList.remove(`selected`);
+  });
   num2_res.addEventListener(`dragend`, (evt) => {
     evt.target.classList.remove(`selected`);
   });
+  
 
   num2_res.ondragover = allowDrop;
+  num2_task.ondragover = allowDrop;
   function allowDrop(event) {
     event.preventDefault();
   }
 
   num2_res.ondrop = drop;
+  num2_task.ondrop = drop;
   function drop(event) {
     event.target.append(document.querySelector(".selected"));
   }
@@ -172,26 +187,24 @@ function show_pictures2() {
   bresultat.addEventListener("click", function () {
     let itemRes = document.querySelectorAll(".res > .elem-image");
     let newcounter = 0;
-    user_cscore2 = 0;
     for (let i = 0; i < itemRes.length; i++) {
-      if (itemRes[i].getAttribute("data-text") === questions1[rand].key) {
+      if (itemRes[i].getAttribute("data-text") == questions1[rand].key) {
         itemRes[i].classList.add("true");
-        user_cscore2 +=10;
         newcounter++;
       }
-      else {
-        user_cscore2 -=5;
+      if (itemRes[i].getAttribute("data-text") !== questions1[rand].key) {
+        score_shtraf +=5;
       }
-      ball.innerHTML = `<p>баллы за уровень: ${user_cscore2}</p>`;
+      
+      ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
       if (newcounter === count) {
         numb2.classList.add("d-none");
-        num2_task.innerHTML = "";
-        num2_res.innerHTML = "";
         brest_ur.classList.add("d-none");
         perehod.classList.remove("d-none");
         k=2;
-        user_cscore += user_cscore2;
-        ball.innerHTML = `<p>баллы за уровень: ${user_cscore2}</p>`;
+        user_cscore_ur -= score_shtraf;
+        user_cscore += user_cscore_ur;
+        ball.innerHTML = `<p>баллы за уровень: ${user_cscore_ur}</p>`;
         ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
       }
     }
@@ -199,9 +212,13 @@ function show_pictures2() {
 }
 
 function show_pictures3() {
+  user_cscore_ur = 40;
+  score_shtraf = 0;
+  num3_task.innerHTML = "";
+        num3_res.innerHTML = "";
   ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
 
-  ball.innerHTML = `<p>баллы за уровень: ${user_cscore3}</p>`;
+  ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
 
   let rand = Math.floor(Math.random() * questions1.length);
   num3_task.innerHTML = `<h1>Уровень 3</h1>
@@ -224,27 +241,25 @@ function show_pictures3() {
   bresultat.addEventListener("click", function () {
     let itemRes = document.querySelectorAll(".res3 > .elem-image");
     let newcounter = 0;
-    user_cscore3 = 0;
     for (let i = 0; i < itemRes.length; i++) {
       if (itemRes[i].getAttribute("data-text") === questions1[rand].key) {
         itemRes[i].classList.add("true");
-        user_cscore3 +=10;
         newcounter++;
       }
       else {
-        user_cscore3 -=5;
+        score_shtraf +=5;
       }
-      ball.innerHTML = `<p>баллы за уровень: ${user_cscore3}</p>`;
+      
+      ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
       if (newcounter === count) {
         numb3.classList.add("d-none");
-        num3_task.innerHTML = "";
-        num3_res.innerHTML = "";
         brest_ur.classList.add("d-none");
         k=3;
         perehod.classList.remove("d-none");
         bgo.classList.add("d-none");
-        user_cscore += user_cscore3;
-        ball.innerHTML = `<p>баллы за уровень: ${user_cscore3}</p>`;
+        user_cscore_ur -= score_shtraf;
+        user_cscore += user_cscore_ur;
+        ball.innerHTML = `<p>баллы за уровень: ${user_cscore_ur}</p>`;
         ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
       }
     }
@@ -297,8 +312,9 @@ function restart (num, us, func) {
   perehod.classList.add("d-none");
   num.classList.remove("d-none");
   user_cscore -=us;
-  us = 0;
+  brest_ur.classList.remove("d-none");
   func();
+  return 0;
 }
 
 function goo(num,func) {
