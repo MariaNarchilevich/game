@@ -62,6 +62,11 @@ input {
   height: 20px;
 }
 
+.brestart-ur {
+  position: absolute;
+  top: 100%;
+}
+
 .forma {
   position: absolute;
   top: 50%;
@@ -89,6 +94,7 @@ input {
 }
 
 .conteiner {
+  position: relative;
   max-width: 1000px;
   height: 600px;
   margin: 0px auto;
@@ -114,6 +120,7 @@ input {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   max-width: 450px;
+  height: 420px;
 }
 
 .elem-image {
