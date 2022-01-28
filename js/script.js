@@ -56,9 +56,15 @@ binput_form.addEventListener("click", function () {
 
 // занова уровень
 brest_ur.addEventListener('click', function(){
-  if (document.querySelector(".number1.d-none")===null) {show_pictures1();}
-  if (document.querySelector(".number2.d-none")===null) { show_pictures2();}
-  if (document.querySelector(".number3.d-none")===null) { show_pictures3();}
+  if (document.querySelector(".number1.d-none")===null) { show_pictures1();}
+  if (document.querySelector(".number2.d-none")===null) {
+    num2_res.innerHTML = "";
+    num2_task.innerHTML = "";
+    show_pictures2();}
+  if (document.querySelector(".number3.d-none")===null) { 
+    num3_res.innerHTML = "";
+    num3_task.innerHTML = "";
+    show_pictures3();}
 })
 
 
@@ -130,12 +136,11 @@ function show_pictures1() {
   }
   
 }
-
+let bresultat = document.querySelector(".bresultat");
 function show_pictures2() {
   user_cscore_ur = 40;
   score_shtraf = 0;
-  num2_task.innerHTML = "";
-  num2_res.innerHTML = "";
+  
   ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
 
   ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
@@ -183,21 +188,25 @@ function show_pictures2() {
     event.target.append(document.querySelector(".selected"));
   }
 
-  let bresultat = document.querySelector(".bresultat");
+  
   bresultat.addEventListener("click", function () {
     let itemRes = document.querySelectorAll(".res > .elem-image");
     let newcounter = 0;
+let d=0;
     for (let i = 0; i < itemRes.length; i++) {
-      if (itemRes[i].getAttribute("data-text") == questions1[rand].key) {
+      console.log(d++);
+      if (itemRes[i].getAttribute("data-text") === questions1[rand].key) {
         itemRes[i].classList.add("true");
         newcounter++;
       }
       if (itemRes[i].getAttribute("data-text") !== questions1[rand].key) {
         score_shtraf +=5;
       }
-      
-      ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
+    }
+    ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
       if (newcounter === count) {
+        num2_task.innerHTML = "";
+        num2_res.innerHTML = "";
         numb2.classList.add("d-none");
         brest_ur.classList.add("d-none");
         perehod.classList.remove("d-none");
@@ -207,15 +216,13 @@ function show_pictures2() {
         ball.innerHTML = `<p>баллы за уровень: ${user_cscore_ur}</p>`;
         ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
       }
-    }
   });
 }
 
 function show_pictures3() {
   user_cscore_ur = 40;
   score_shtraf = 0;
-  num3_task.innerHTML = "";
-        num3_res.innerHTML = "";
+  
   ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
 
   ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
@@ -249,9 +256,11 @@ function show_pictures3() {
       else {
         score_shtraf +=5;
       }
-      
-      ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
+    }
+    ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
       if (newcounter === count) {
+        num3_task.innerHTML = "";
+        num3_res.innerHTML = "";
         numb3.classList.add("d-none");
         brest_ur.classList.add("d-none");
         k=3;
@@ -262,7 +271,6 @@ function show_pictures3() {
         ball.innerHTML = `<p>баллы за уровень: ${user_cscore_ur}</p>`;
         ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
       }
-    }
   });
 }
 
