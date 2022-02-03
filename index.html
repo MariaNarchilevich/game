@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>game</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <main>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>game</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main>
       <section>
         <!-- первая страница -->
-        <button class="bstart " type="button">СТАРТ</button> 
+        <div class="start-str">
+          <h1 class="txt-start">Игра КАРТИНКИ</h1>
+          <div class="img-for-start" style="display: flex;">
+            <img src="/img/cat.jpg" alt="cat" width="100px" height="100px" style="margin: 5px;">
+            <img src="/img/tractor.jpg" alt="trr" width="100px" height="100px" style="margin: 5px;">
+            <img src="/img/mittens.jpg" alt="mittens" width="100px" height="100px" style="margin: 5px;">
+          </div>
+          <button class="bstart" type="button">Начать игру!</button>
+        </div>
       </section>
 
       <section>
@@ -18,14 +26,14 @@
         <div class="forma d-none">
           <ul>
             <li>
-            <label>Как тебя зовут?</label>
-          </li>
-          <li>
-            <input type="text" class="user-name">
-          </li>
-          <li> 
-            <button class="binput" type="button">Отправить</button>
-          </li>
+              <label>Как тебя зовут?</label>
+            </li>
+            <li>
+              <input type="text" class="user-name" />
+            </li>
+            <li>
+              <button class="binput" type="button">Отправить</button>
+            </li>
           </ul>
         </div>
       </section>
@@ -34,9 +42,6 @@
         <div class="user-score d-none">
           <!-- тут у нас баллы -->
         </div>
-      </section>
-
-      <section>
         <div class="conteiner d-none">
           <div class="number1">
             <!-- первый уровень -->
@@ -45,7 +50,7 @@
           <div class="perehod d-none">
             <h2>ЗАДАНИЕ ВЫПОЛНЕНО</h2>
             <div class="buttn-nav">
-              <button class="brestart" type="button">Пройти еще раз</button>
+              <button class="breturn" type="button">Пройти еще раз</button>
               <button class="bgo" type="button">следующий уровень</button>
             </div>
           </div>
@@ -53,30 +58,29 @@
           <div class="number2 d-none">
             <div class="flexbox-pos">
               <div class="flex-column">
-              <!-- второй уровень -->
+                <!-- второй уровень -->
               </div>
-              <div class="res"></div> 
-              <button class="bresultat" type="button">проверить</button>
+              <div class="res"></div>
+              <button class="bresultat2" type="button">проверить</button>
             </div>
-
-          </div> 
+          </div>
 
           <div class="number3 d-none">
-              <div class="flexbox-pos3">
-                <div class="flex-column3">
+            <div class="flexbox-pos3">
+              <div class="flex-column3">
                 <!-- третий уровень -->
-                </div>
-                <div class="res3"></div>
-                <button class="bresultat3" type="button">проверить</button>
               </div>
+              <div class="res3"></div>
+              <button class="bresultat3" type="button">проверить</button>
+            </div>
           </div>
 
           <button class="brestart-ur d-none" type="button">занова</button>
         </div>
       </section>
-  </main>
-  <footer></footer>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="js/script.js"></script>
-</body>
+    </main>
+    <footer></footer>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>
