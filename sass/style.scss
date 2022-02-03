@@ -35,10 +35,11 @@ input{
 .bstart {
   width: 200px;
   height: 50px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -120px;
+  //position: absolute;
+  // top: 50%;
+  // left: 50%;
+  //margin-left: -120px;
+  margin: 10px 68px;
   font-size: 20px;
   color: blue;
   font-weight: bold;
@@ -53,7 +54,7 @@ input{
   justify-content: space-between;
 }
 
-.bresultat, .bresultat3{
+.bresultat2, .bresultat3{
   position: absolute;
   top: 90%;
   left: 50%;
@@ -65,13 +66,23 @@ input{
   top: 100%;
 }
 
+.start-str{
+  position: absolute;
+  top: 30%;
+  left: 38%;
+}
+.txt-start{
+  margin: 10px 68px;
+  color: blue;
+}
+
 // форма
 .forma{
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -160px;
-  margin-top: -90px;
+  top: 37%;
+  left: 40%;
+  // margin-left: -160px;
+  // margin-top: -90px;
   width: 250px;
   height: 130px;
   padding: 1em;
