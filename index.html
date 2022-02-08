@@ -29,7 +29,7 @@
               <label>Как тебя зовут?</label>
             </li>
             <li>
-              <input type="text" class="user-name" />
+              <input type="text" class="user-name">
             </li>
             <li>
               <button class="binput" type="button">Отправить</button>
@@ -48,10 +48,11 @@
           </div>
 
           <div class="perehod d-none">
-            <h2>ЗАДАНИЕ ВЫПОЛНЕНО</h2>
+            <h2 style="text-align: center;">ЗАДАНИЕ ВЫПОЛНЕНО</h2>
             <div class="buttn-nav">
-              <button class="breturn" type="button">Пройти еще раз</button>
+              <button class="breturn" type="button">пройти еще раз</button>
               <button class="bgo" type="button">следующий уровень</button>
+              <button class="b-end d-none" type="button">к результатам</button>
             </div>
           </div>
 
@@ -75,11 +76,14 @@
             </div>
           </div>
 
-          <button class="brestart-ur d-none" type="button">занова</button>
+          <button class="brestart-ur d-none" type="button">Restart</button>
+
+          <div class="game-end d-none">
+            
+          </div>
         </div>
       </section>
     </main>
-    <footer></footer>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="js/script.js"></script>
   </body>

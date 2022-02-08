@@ -14,16 +14,19 @@ ul {
 }
 
 li {
-  padding: 10px;
+  padding: 7px;
 }
 
 label {
-  margin-left: 33px;
+  margin-left: 20px;
+  font-size: 20px;
 }
 
 input {
-  height: 30px;
-  width: 160px;
+  height: 35px;
+  width: 180px;
+  margin-left: -8px;
+  font-size: 20px;
 }
 
 .d-none {
@@ -40,7 +43,8 @@ input {
 }
 
 .binput {
-  margin-left: 45px;
+  margin-left: 38px;
+  font-size: 15px;
 }
 
 .buttn-nav {
@@ -52,22 +56,39 @@ input {
           justify-content: space-between;
 }
 
+.breturn, .bgo, .b-end {
+  height: 40px;
+  width: 210px;
+  font-size: 20px;
+}
+
 .bresultat2, .bresultat3 {
   position: absolute;
-  top: 90%;
-  left: 50%;
-  height: 20px;
+  top: 95%;
+  left: 51%;
+  height: 40px;
+  width: 110px;
+  font-size: 20px;
 }
 
 .brestart-ur {
   position: absolute;
-  top: 100%;
+  top: 95%;
+  height: 40px;
+  width: 110px;
+  font-size: 20px;
+}
+
+.brestart-game {
+  height: 35px;
+  width: 90px;
+  font-size: 20px;
 }
 
 .start-str {
   position: absolute;
   top: 30%;
-  left: 38%;
+  left: 35%;
 }
 
 .txt-start {
@@ -75,10 +96,20 @@ input {
   color: blue;
 }
 
+.img-for-start > img {
+  -webkit-transform: rotate(5deg);
+          transform: rotate(5deg);
+  padding: 10px 10px;
+}
+
+.img-for-start {
+  margin-left: -30px;
+}
+
 .forma {
   position: absolute;
   top: 37%;
-  left: 40%;
+  left: 37%;
   width: 250px;
   height: 130px;
   padding: 1em;
@@ -117,6 +148,19 @@ input {
 .statistic > p {
   font-size: 50px;
   color: #31036d;
+}
+
+.perehod, .game-end {
+  margin: 200px 100px;
+}
+
+.buttn-nav {
+  margin-top: 100px;
+}
+
+.game-end {
+  text-align: center;
+  font-size: 20px;
 }
 
 .flex-image {
@@ -167,4 +211,16 @@ input {
   background-color: brown;
   height: 600px;
   width: 50%;
+}
+
+.score, .score2 {
+  font-size: 20px;
+}
+
+.flex-column > h1, .flex-column3 > h1 {
+  margin: 10px 0;
+}
+
+.flex-column > h2, .flex-column3 > h2 {
+  margin: 10px 0;
 }

@@ -5,6 +5,7 @@ let bgo = document.querySelector(".bgo"); //кнопка переход на у�
 let brest_ur = document.querySelector(".brestart-ur"); //кнопка рестарта уровня 
 let bresultat2 = document.querySelector(".bresultat2");
 let bresultat3 = document.querySelector(".bresultat3");
+let b_end = document.querySelector(".b-end");
 
 let form = document.querySelector(".forma"); //форма
 let kont = document.querySelector(".conteiner"); //фон заданий
@@ -20,6 +21,8 @@ let num2_task = document.querySelector(".flex-column"); //2задание
 let num2_res = document.querySelector(".res"); //2 задание
 let num3_task = document.querySelector(".flex-column3"); //3задание
 let num3_res = document.querySelector(".res3"); //3 задание
+
+let game_end = document.querySelector(".game-end");
 
 let user_cscore = 0;
 let user_cscore_ur = 0;
@@ -48,7 +51,7 @@ button_start.addEventListener("click", function () {
 // заполнение формы
 binput_form.addEventListener("click", function () {
   if (uname.value === null || uname.value === "") {
-    alert("Введи свое имя");
+    alert("Нужно обязательно ввести своё имя)");
     return;
   }
   form.classList.add("d-none");
@@ -83,13 +86,14 @@ brest_ur.addEventListener("click", function () {
 // типо возврат на предыдущий уровень
 breturn.addEventListener("click", function () {
   if (k === 1) {
-    returnUr(numb1, user_cscore_ur, show_pictures1);
+    returnUr1(numb1, user_cscore_ur, show_pictures1);
   }
   if (k === 2) {
     returnUr(numb2, user_cscore_ur, show_pictures2, f2, bresultat2);
   }
   if (k === 3) {
-    returnUr(numb3, user_cscore_ur, show_pictures3, f3, bresultat3);
+    returnUr(numb3, user_cscore_ur, show_pictures3, f3, bresultat3)
+    game_end.classList.remove("d-none");
   }
 });
 
@@ -107,7 +111,7 @@ bgo.addEventListener("click", function () {
 function show_pictures1() {
   user_cscore_ur = 40;
   score_shtraf = 0;
-  ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
+  ball2.innerHTML = `<p>общие баллы: ${user_cscore}</p>`;
 
   ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
 
@@ -152,7 +156,7 @@ function show_pictures1() {
         user_cscore_ur -= score_shtraf;
         user_cscore += user_cscore_ur;
         ball.innerHTML = `<p>баллы за уровень: ${user_cscore_ur}</p>`;
-        ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
+        ball2.innerHTML = `<p>общие баллы: ${user_cscore}</p>`;
       }
     });
   }
@@ -162,7 +166,7 @@ function show_pictures2() {
   user_cscore_ur = 40;
   score_shtraf = 0;
 
-  ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
+  ball2.innerHTML = `<p>общие баллы: ${user_cscore}</p>`;
 
   ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
 
@@ -214,14 +218,13 @@ function f2() {
   let itemRes = document.querySelectorAll(".res > .elem-image");
   let newcounter = 0;
   // score_shtraf = 0;
-  let d = 0;
   for (let i = 0; i < itemRes.length; i++) {
-    console.log(d++);
     if (itemRes[i].getAttribute("data-text") === questions1[rand].key) {
       itemRes[i].classList.add("true");
       newcounter++;
     }
     if (itemRes[i].getAttribute("data-text") !== questions1[rand].key) {
+      itemRes[i].classList.add("false");
       score_shtraf += 5;
     }
   }
@@ -236,7 +239,7 @@ function f2() {
     user_cscore_ur -= score_shtraf;
     user_cscore += user_cscore_ur;
     ball.innerHTML = `<p>баллы за уровень: ${user_cscore_ur}</p>`;
-    ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
+    ball2.innerHTML = `<p>общие баллы: ${user_cscore}</p>`;
   }
 }
 
@@ -244,13 +247,13 @@ function show_pictures3() {
   user_cscore_ur = 40;
   score_shtraf = 0;
 
-  ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
+  ball2.innerHTML = `<p>общие баллы: ${user_cscore}</p>`;
 
   ball.innerHTML = `<p>штрафные баллы за уровень: ${score_shtraf}</p>`;
 
   rand = Math.floor(Math.random() * questions1.length);
   num3_task.innerHTML = `<h1>Уровень 3</h1>
-                     <h2>${uname.value}, ${questions1[rand].que}</h2> <p>два раза нажми на картинку</p>`;
+                     <h2>${uname.value}, ${questions1[rand].que}</h2> <p>(дважды нажми на картинку)</p>`;
 
   count = addImg(questions1[rand].key, num3_task);
 
@@ -275,6 +278,7 @@ function f3() {
       itemRes[i].classList.add("true");
       newcounter++;
     } else {
+      itemRes[i].classList.add("false");
       score_shtraf += 5;
     }
   }
@@ -287,12 +291,38 @@ function f3() {
     k = 3;
     perehod.classList.remove("d-none");
     bgo.classList.add("d-none");
+    b_end.classList.remove("d-none");
     user_cscore_ur -= score_shtraf;
     user_cscore += user_cscore_ur;
     ball.innerHTML = `<p>баллы за уровень: ${user_cscore_ur}</p>`;
-    ball2.innerHTML = `<p>баллы общ: ${user_cscore}</p>`;
+    ball2.innerHTML = `<p>общие баллы: ${user_cscore}</p>`;
+    theEnd();
   }
 }
+
+function theEnd() {
+  b_end.addEventListener("click", function (){
+    section_ball.classList.add("d-none");
+    perehod.classList.add("d-none");
+    game_end.classList.remove("d-none");
+    game_end.innerHTML = `<p>ты прошел игру. молодец</p>
+    <p>ты набрал ${user_cscore} баллов за всю игру</p>
+    <p>Хочешь пройти игру еще раз?</p>
+    <button class="brestart-game" type="button">Да</button>`;
+    rest();
+  })
+}
+
+function rest() {
+  let brest = document.querySelector(".brestart-game");
+  brest.addEventListener("click", function () {
+    game_end.classList.add("d-none");
+    user_cscore = 0;
+    numb1.classList.remove("d-none");
+    show_pictures1();
+  })
+}
+
 function addImg(val, tegd) {
   const tdiv = document.createElement("div");
   tdiv.classList.add("flex-image");
@@ -341,6 +371,14 @@ function returnUr(num, us, func, cn, re) {
   user_cscore -= us;
   brest_ur.classList.remove("d-none");
   re.removeEventListener("click", cn);
+  func();
+  return 0;
+}
+function returnUr1(num, us, func) {
+  perehod.classList.add("d-none");
+  num.classList.remove("d-none");
+  user_cscore -= us;
+  brest_ur.classList.remove("d-none");
   func();
   return 0;
 }
