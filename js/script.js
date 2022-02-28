@@ -42,6 +42,14 @@ let rand = 0;
 let count = 0;
 
 
+//изменение темы
+$(document).ready(function(){
+  $('.theme-button').click(function(event){
+      $('.conteiner').toggleClass('dr-color-c');
+      $('body').toggleClass('dr-color-b');
+  });
+});
+
 // старт
 button_start.addEventListener("click", function () {
   start_str.classList.add("d-none");
